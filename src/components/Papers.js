@@ -11,13 +11,18 @@ class Papers extends React.Component {
     render() {
         let noData = "" 
         if (this.state.results.length === 0) {
-            noData = <p>No data</p>
+            noData = <p>No papers data available.</p>
+        }
+
+        let filteredResults = this.state.results;
+        if ((filteredResults.length > 0) && (this.props.search !== undefined)) {
+            filteredResults = this.state.results.filter(this.filterSearch);
         }
 
         return (
             <div>
                 {noData}
-                {this.state.results.map( (paper, i) => (<Paper paper={paper} />) )}
+                {filteredResults.map( (paper, i) => (<Paper paper={paper} />) )}
             </div>
         )
     }
@@ -50,6 +55,14 @@ class Papers extends React.Component {
             console.log("something went wrong ", err) 
         });
     }
+
+    filterSearch = (s) => {
+        return (
+            s.title.toLowerCase().includes(this.props.search.toLowerCase()) 
+            || s.authors.toLowerCase().includes(this.props.search.toLowerCase())
+        )
+    }
+    
 }
 
 export default Papers;

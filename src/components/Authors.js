@@ -9,10 +9,20 @@ class Authors extends React.Component {
     }
 
     render() {
-        console.log(this.state.results);
+        let noData = "" 
+        if (this.state.results.length === 0) {
+            noData = <p>No author data available.</p>
+        }
+
+        let filteredResults = this.state.results;
+        if ((filteredResults.length > 0) && (this.props.search !== undefined)) {
+            filteredResults = this.state.results.filter(this.filterSearch);
+        }
+
         return (
             <div>
-                {this.state.results.map( (author, i) => (<Author author={author} />) )}
+                {noData}
+                {filteredResults.map( (author, i) => (<Author author={author} />) )}
             </div>
         )
     }
@@ -34,6 +44,13 @@ class Authors extends React.Component {
         .catch ((err) => { 
             console.log("something went wrong ", err) 
         });
+    }
+
+    filterSearch = (s) => {
+        return (
+            s.first_name.toLowerCase().includes(this.props.search.toLowerCase()) 
+            || s.last_name.toLowerCase().includes(this.props.search.toLowerCase())
+        )
     }
 }
 
