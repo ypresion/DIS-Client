@@ -15,6 +15,10 @@ class Papers extends React.Component {
         }
 
         let filteredResults = this.state.results;
+
+        if (this.props.award !== undefined) {
+            filteredResults = this.state.results.filter(this.filterByAward);
+        }
         if ((filteredResults.length > 0) && (this.props.search !== undefined)) {
             filteredResults = this.state.results.filter(this.filterSearch);
         }
@@ -22,7 +26,7 @@ class Papers extends React.Component {
         return (
             <div>
                 {noData}
-                {filteredResults.map( (paper, i) => (<Paper paper={paper} />) )}
+                {filteredResults.map( (paper, i) => (<Paper key={i} paper={paper} />) )}
             </div>
         )
     }
@@ -56,11 +60,15 @@ class Papers extends React.Component {
         });
     }
 
-    filterSearch = (s) => {
+    filterSearch = (paper) => {
         return (
-            s.title.toLowerCase().includes(this.props.search.toLowerCase()) 
-            || s.authors.toLowerCase().includes(this.props.search.toLowerCase())
+            paper.title.toLowerCase().includes(this.props.search.toLowerCase()) 
+            || paper.authors.toLowerCase().includes(this.props.search.toLowerCase())
         )
+    }
+
+    filterByAward = (paper) => {
+        return ((paper.award === this.props.award) || (this.props.award===""))
     }
     
 }

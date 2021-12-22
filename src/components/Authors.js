@@ -22,7 +22,7 @@ class Authors extends React.Component {
         return (
             <div>
                 {noData}
-                {filteredResults.map( (author, i) => (<Author author={author} />) )}
+                {filteredResults.map( (author, i) => (<Author key={i} author={author} />) )}
             </div>
         )
     }
