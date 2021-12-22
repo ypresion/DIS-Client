@@ -19,10 +19,27 @@ class Authors extends React.Component {
             filteredResults = this.state.results.filter(this.filterSearch);
         }
 
+        let buttons = ""
+        if (this.props.page !== undefined) {
+            const pageSize = 10
+            let pageMax = this.props.page * pageSize
+            let pageMin = pageMax - pageSize
+
+            buttons = (
+                <div>
+                    <button onClick={this.props.handlePreviousClick} disabled={this.props.page <= 1}>Previous</button>
+                    <p>Page {this.props.page} of {Math.ceil(filteredResults.length / pageSize)}</p>
+                    <button onClick={this.props.handleNextClick} disabled={this.props.page >= Math.ceil(filteredResults.length / pageSize)}>Next</button>
+                </div>
+             )
+             filteredResults = filteredResults.slice(pageMin,pageMax)
+         }
+
         return (
             <div>
                 {noData}
                 {filteredResults.map( (author, i) => (<Author key={i} author={author} />) )}
+                {buttons}
             </div>
         )
     }

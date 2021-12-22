@@ -9,8 +9,13 @@ class PaperPage extends React.Component {
         super(props)
         this.state = {
             award: "",
-            search: ""
+            search: "",
+            page: 1
         }
+        this.handleAwardSelect = this.handleAwardSelect.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
+        this.handleNextClick = this.handleNextClick.bind(this);
+        this.handlePreviousClick = this.handlePreviousClick.bind(this);
     }
 
     handleSearch = (e) => {
@@ -21,12 +26,26 @@ class PaperPage extends React.Component {
         this.setState({award:e.target.value})
     }
 
+    handleNextClick = () => {
+        this.setState({page:this.state.page+1})
+    }
+
+    handlePreviousClick = () => {
+        this.setState({page:this.state.page-1})
+     }
+
     render() {
         return (
             <div>
                 <SearchBox label={"Search by author name or paper title"} search={this.state.search} handleSearch={this.handleSearch} />
                 <SelectAward award={this.state.award} handleSelect={this.handleAwardSelect}/>
-                <Papers award={this.state.award} search={this.state.search} />
+                <Papers 
+                    award={this.state.award} 
+                    search={this.state.search} 
+                    page={this.state.page}
+                    handleNextClick={this.handleNextClick} 
+                    handlePreviousClick={this.handlePreviousClick}
+                />
             </div>
         )
     }
