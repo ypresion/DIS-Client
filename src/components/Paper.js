@@ -1,36 +1,27 @@
 import React from "react";
+import { Accordion, Container } from "react-bootstrap";
 
 class Paper extends React.Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            display: false
-        }
-    }
-
-    handleClick = () => {
-        this.setState({display:!this.state.display})
-    }
 
     render() {
-        let details = "";
-
-        if (this.state.display) {
-            details = 
-                <div>
-                    <p>{this.props.paper.abstract}</p>
-                    <p>{this.props.paper.authors}</p>
-                </div>
-        }
-
         return(
-            <div onClick={this.handleClick}>
-                <p>{this.props.paper.title}</p>
-                {details}
-            </div>
+            <Container className="px-5">
+                <Accordion defaultActiveKey="0">
+                    <Accordion.Item eventKey={this.props.count}>
+                        <Accordion.Header>{this.props.paper.title}</Accordion.Header>
+                        <Accordion.Body>
+                            <p className="fw-bold">Abstract: </p>
+                            {this.props.paper.abstract}
+                            <p className="fw-bold">Authors: </p>
+                            {this.props.paper.authors}
+                        </Accordion.Body>
+                    </Accordion.Item>
+                </Accordion>
+            </Container>
         )
     }
+
 }
 
 export default Paper;

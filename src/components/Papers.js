@@ -1,5 +1,6 @@
 import React from "react";
 import Paper from "./Paper";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 class Papers extends React.Component {
 
@@ -30,11 +31,13 @@ class Papers extends React.Component {
             let pageMin = pageMax - pageSize
 
             buttons = (
-                <div>
-                    <button onClick={this.props.handlePreviousClick} disabled={this.props.page <= 1}>Previous</button>
-                    <p>Page {this.props.page} of {Math.ceil(filteredResults.length / pageSize)}</p>
-                    <button onClick={this.props.handleNextClick} disabled={this.props.page >= Math.ceil(filteredResults.length / pageSize)}>Next</button>
-                </div>
+                <Container>
+                    <Row className="my-3 justify-content-around align-items-center">
+                        <Col className="col-1"><Button variant="outline-primary" onClick={this.props.handlePreviousClick} disabled={this.props.page <= 1}>Previous</Button></Col>
+                        <Col className="col-2 text-center"><span>Page {this.props.page} of {Math.ceil(filteredResults.length / pageSize)}</span></Col>
+                        <Col className="col-1"><Button variant="outline-primary" onClick={this.props.handleNextClick} disabled={this.props.page >= Math.ceil(filteredResults.length / pageSize)}>Next</Button></Col>
+                    </Row>
+                </Container>
              )
              filteredResults = filteredResults.slice(pageMin,pageMax)
          }
@@ -42,7 +45,7 @@ class Papers extends React.Component {
         return (
             <div>
                 {noData}
-                {filteredResults.map( (paper, i) => (<Paper key={i} paper={paper} />) )}
+                {filteredResults.map( (paper, i) => (<Paper key={i} count={i} paper={paper} />) )}
                 {buttons}
             </div>
         )
