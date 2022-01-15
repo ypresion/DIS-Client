@@ -13,6 +13,7 @@ class Paper extends React.Component {
                         <Accordion.Body>
                             <p className="fw-bold">Abstract: </p>
                             {this.props.paper.abstract}
+                            
                             <p className="fw-bold">Authors: </p>
                             {this.props.paper.authors}
                         </Accordion.Body>

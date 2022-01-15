@@ -5,10 +5,6 @@ class SearchBox extends React.Component {
 
     render() {
            return (
-            //    <label>
-            //        {this.props.label}
-            //        <input type='text' placeholder='search' value={this.props.search} onChange={this.props.handleSearch} />
-            //    </label>
             <Container>
                 <Row className="justify-content-center">
                     <InputGroup className="my-3 col-12 col-md-8">

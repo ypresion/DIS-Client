@@ -57,7 +57,6 @@ class Papers extends React.Component {
             url = "http://unn-w18015597.newnumyspace.co.uk/kf6012/coursework/part1/api/papers?id=random"
         } else {
             url = "http://unn-w18015597.newnumyspace.co.uk/kf6012/coursework/part1/api/papers"
-
         }
 
         if (this.props.authorid !== undefined) {
@@ -73,7 +72,7 @@ class Papers extends React.Component {
               }
         })
         .then( (data) => {
-            this.setState({results:data})
+            this.setState({results:data.results})
         })
         .catch ((err) => { 
             console.log("something went wrong ", err) 

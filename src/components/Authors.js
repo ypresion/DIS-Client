@@ -59,7 +59,7 @@ class Authors extends React.Component {
               }
         })
         .then( (data) => {
-            this.setState({results:data})
+            this.setState({results:data.results})
         })
         .catch ((err) => { 
             console.log("something went wrong ", err) 
