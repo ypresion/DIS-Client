@@ -22,7 +22,9 @@ const NavBar = () => {
 
   const handleLogoutClick = () => {
     dispatch({ authorised: false })
+    dispatch({ readingList: [] })
     localStorage.removeItem('authToken');
+    localStorage.removeItem('readingList')
     navigate("/");
   }
 

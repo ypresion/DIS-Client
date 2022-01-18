@@ -14,7 +14,7 @@ const ReadingListPage = () => {
 
     const [state, dispatch] = React.useContext(GlobalStateContext);
 
-    const readingList = <ReadingList />;
+    const readingList = <ReadingList papers={state.readingList} />;
     const unauthorised = <h2>Not authorised! Please log in to access this page.</h2>;
 
     return (

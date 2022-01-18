@@ -14,9 +14,9 @@ import { GlobalStateContext } from "../GlobalStateProvider";
 const LoginPage = () => {
 
     let navigate = useNavigate();
-    const[email, setEmail] = useState('');
-    const[password, setPassword] = useState('');
-    const [ state, dispatch ] = React.useContext(GlobalStateContext);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [state, dispatch] = React.useContext(GlobalStateContext);
 
 
     const handlePassword = (e) => {
@@ -26,57 +26,84 @@ const LoginPage = () => {
     const handleEmail = (e) => {
         setEmail(e.target.value)
     }
-    
-    const handleLoginClick = () => {
-    	let url = "http://unn-w18015597.newnumyspace.co.uk/kf6012/coursework/part1/api/authenticate" 
-        console.log(state);
 
-        // Send the email and password as 'Form Data'.
+    //Authenticate the user with credentials provided in the login form.
+    //On successful authorization, save JWT token to local storage and user's
+    //reading list to global state.
+    const handleLoginClick = () => {
+        let url = "http://unn-w18015597.newnumyspace.co.uk/kf6012/coursework/part1/api/authenticate"
+
         let formData = new FormData();
         formData.append('email', email);
         formData.append('password', password);
 
-        // A fetch request with 'POST' method specified
-        fetch(url, { method: 'POST',
-                    headers : new Headers(),
-                    body:formData
-                })
-        .then( (response) => {
-            // Successful authentication will return
-            // a 200 status code.
-            if (response.status === 200) {
-                return response.json() 
-            } else {
-                throw Error(response.statusText)
-            }
+        fetch(url, {
+            method: 'POST',
+            headers: new Headers(),
+            body: formData
         })
-        .then( (data) => {
-            console.log(data)
+            .then((response) => {
+                if (response.status === 200) {
+                    return response.json()
+                } else {
+                    throw Error(response.statusText)
+                }
+            })
+            .then((data) => {
+                if ("token" in data.results) {
+                    setAuth(data);
+                    setReadingList();  
+                    navigate("/");
+                }
+            })
+            .catch((err) => {
+                console.log("something went wrong ", err)
+            }
+            );
+    }
 
-            // If results include a token, change state
-            // to authenticated
-            if ("token" in data.results) {
-                // Save token in local storage
-                localStorage.setItem('authToken', data.results.token); 
-                dispatch({ authorised: true })
-                navigate("/");
-            }
+    //save JWT token to local storage and global state
+    const setAuth = (data) => {
+        localStorage.setItem('authToken', data.results.token);
+        dispatch({ authorised: true })
+    }
+
+    //save reading list to global state
+    const setReadingList = () => {
+        let url = "http://unn-w18015597.newnumyspace.co.uk/kf6012/coursework/part1/api/readinglist"
+        let formData = new FormData();
+        formData.append('token', localStorage.getItem('authToken'));
+
+        fetch(url, {
+            method: 'POST',
+            headers: new Headers(),
+            body: formData
         })
-        .catch ((err) => {
-            console.log("something went wrong ", err)
-            }
-        );
+            .then((response) => {
+                if (response.status === 200) {
+                    return response.json()
+                } else {
+                    throw Error(response.statusText);
+                }
+            })
+            .then((data) => {
+                localStorage.setItem('readingList', JSON.stringify(data.results));
+                dispatch({ readingList: data.results })
+            })
+            .catch((err) => {
+                console.log("something went wrong ", err)
+            });
     }
 
 
-        return (
-            <Login 
-                handleEmail={handleEmail} 
-                handlePassword={handlePassword}
-                handleLoginClick={handleLoginClick}
-            />
-        )
-    
+    return (
+        <Login
+            handleEmail={handleEmail}
+            handlePassword={handlePassword}
+            handleLoginClick={handleLoginClick}
+        />
+    )
+
 }
 
 export default LoginPage;

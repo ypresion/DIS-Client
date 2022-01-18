@@ -1,5 +1,4 @@
 import React from "react"
-
 /**
  * Global state provider.
  * 
@@ -9,13 +8,16 @@ import React from "react"
  */
 
 let initialGlobalState; 
+
 if (localStorage.getItem('authToken') !== null) {
   initialGlobalState = {
-    authorised: true
+    authorised: true,
+    readingList: JSON.parse(localStorage.getItem('readingList'))
   }
 } else {
   initialGlobalState = {
-    authorised: false
+    authorised: false,
+    readingList: []
   }
 }
 
