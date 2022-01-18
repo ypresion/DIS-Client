@@ -25,7 +25,7 @@ class Login extends React.Component {
                 onChange={this.props.handleEmail}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
               <Form.Control
                 type='password'
