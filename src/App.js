@@ -23,7 +23,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <GlobalStateProvider>
-      <BrowserRouter >
+      <BrowserRouter basename={"/kf6012/coursework/part2"}>
         <div className="App">
         <NavBar />
 
