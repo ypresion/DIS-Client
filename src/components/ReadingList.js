@@ -21,7 +21,7 @@ class ReadingList extends React.Component {
         return (
             <div>
                 {filteredResults.map((paper, i) => (
-                    <Paper key={i} count={i} paper={paper} />
+                    <Paper key={i} count={i} paper={paper} onList="true"/>
                 )
                 )}
             </div>

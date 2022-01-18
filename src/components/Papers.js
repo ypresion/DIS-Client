@@ -6,7 +6,9 @@ class Papers extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = { results : [] }
+        this.state = { 
+            results: [],
+            readingList: [] }
     }
 
     render() {
@@ -45,13 +47,20 @@ class Papers extends React.Component {
         return (
             <div>
                 {noData}
-                {filteredResults.map( (paper, i) => (<Paper key={i} count={i} paper={paper} />) )}
+                {filteredResults.map( (paper, i) => (<Paper key={i} count={i} paper={paper} onList={this.isOnList(paper.paper_id)}  />) )}
                 {buttons}
             </div>
         )
     }
 
     componentDidMount() {
+        this.fetchPapers();
+        if(localStorage.getItem('authToken') !== null) {
+            this.fetchReadingList();
+        }
+    }
+    
+    fetchPapers = () => {
         let url;
         if (this.props.randomPaper) {
             url = "http://unn-w18015597.newnumyspace.co.uk/kf6012/coursework/part1/api/papers?id=random"
@@ -77,6 +86,35 @@ class Papers extends React.Component {
         .catch ((err) => { 
             console.log("something went wrong ", err) 
         });
+    }
+
+    fetchReadingList = () => {
+        let url = "http://unn-w18015597.newnumyspace.co.uk/kf6012/coursework/part1/api/readinglist"
+        let formData = new FormData();
+        formData.append('token', localStorage.getItem('authToken'));
+
+        fetch(url, {
+            method: 'POST',
+            headers: new Headers(),
+            body: formData
+        })
+            .then((response) => {
+                if (response.status === 200) {
+                    return response.json()
+                } else {
+                    throw Error(response.statusText);
+                }
+            })
+            .then((data) => {
+                this.setState({ readingList: data.results })
+            })
+            .catch((err) => {
+                console.log("something went wrong ", err)
+            });
+    }
+
+    isOnList = (paper_id) => {
+        return this.state.readingList.some((item) => { return item.paper_id === paper_id; })
     }
 
     filterSearch = (paper) => {
