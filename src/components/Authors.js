@@ -2,6 +2,14 @@ import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Author from "./Author";
 
+/**
+ * An authors component.
+ * 
+ * It will render a list of author components and allow 
+ * to filter through them by award or search by name.
+ * 
+ * @author Sylwia Krupa | w18015597
+ */
 class Authors extends React.Component {
 
     constructor(props) {

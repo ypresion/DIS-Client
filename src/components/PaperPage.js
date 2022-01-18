@@ -3,6 +3,14 @@ import Papers from "./Papers";
 import SearchBox from "./SearchBox";
 import SelectAward from "./SelectAward";
 
+/**
+ * Paper page component.
+ * 
+ * It will render a list of paper components, along with 
+ * a search box and a select component. 
+ * 
+ * @author Sylwia Krupa | w18015597
+ */
 class PaperPage extends React.Component {
 
     constructor(props) {

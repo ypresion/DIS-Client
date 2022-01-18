@@ -12,7 +12,14 @@ import { GlobalStateProvider } from './GlobalStateProvider';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
+/**
+ * Main App component.
+ * 
+ * It will render the entirety of the site, including a navigation bar,
+ * a footer and any content in between. It is also responsible for routing.
+ * 
+ * @author Sylwia Krupa | w18015597
+ */
 function App() {
   return (
     <GlobalStateProvider>

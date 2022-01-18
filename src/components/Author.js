@@ -2,6 +2,14 @@ import React from "react";
 import Papers from "./Papers";
 import { Container, Row, Accordion } from "react-bootstrap";
 
+/**
+ * An author component.
+ * 
+ * It will render an author component which, when clicked, will 
+ * display information about that author and papers they contributed to.
+ * 
+ * @author Sylwia Krupa | w18015597
+ */
 class Author extends React.Component {
 
     render() {

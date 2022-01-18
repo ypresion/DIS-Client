@@ -2,6 +2,16 @@ import React from "react";
 import { Accordion, Container, Button } from "react-bootstrap";
 import { GlobalStateContext } from "../GlobalStateProvider";
 
+/**
+ * A paper component.
+ * 
+ * It will render a component which, when clicked, displays 
+ * paper details. If the user is authorised, it will also 
+ * display buttons that allow them to add/remove given 
+ * papers from their reading list.
+ * 
+ * @author Sylwia Krupa | w18015597
+ */
 const Paper = (props) => {
 
     const [state, dispatch] = React.useContext(GlobalStateContext);

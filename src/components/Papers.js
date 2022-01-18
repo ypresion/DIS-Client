@@ -2,6 +2,14 @@ import React from "react";
 import Paper from "./Paper";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
+/**
+ * Papers component.
+ * 
+ * It will render a list of paper components which can be 
+ * filetered and searched through. 
+ * 
+ * @author Sylwia Krupa | w18015597
+ */
 class Papers extends React.Component {
 
     constructor(props) {
@@ -19,11 +27,11 @@ class Papers extends React.Component {
 
         let filteredResults = this.state.results;
 
-        if (this.props.award !== undefined) {
-            filteredResults = this.state.results.filter(this.filterByAward);
+        if ((this.props.award !== undefined)) {
+            filteredResults = filteredResults.filter(this.filterByAward);
         }
         if ((filteredResults.length > 0) && (this.props.search !== undefined)) {
-            filteredResults = this.state.results.filter(this.filterSearch);
+            filteredResults = filteredResults.filter(this.filterSearch);
         }
 
         let buttons = ""
@@ -125,7 +133,8 @@ class Papers extends React.Component {
     }
 
     filterByAward = (paper) => {
-        return ((paper.award === this.props.award) || (this.props.award===""))
+        let awardId = paper.awards.match(/\d/g).join("");
+        return awardId.includes(this.props.award) || this.props.award==="";
     }
     
 }

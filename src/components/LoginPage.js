@@ -3,7 +3,14 @@ import Login from "./Login.js";
 import { useNavigate } from "react-router-dom";
 import { GlobalStateContext } from "../GlobalStateProvider";
 
-
+/**
+ * Login page component.
+ * 
+ * It will handle user login. On successful authentication, 
+ * it will save JWT token to local storage and set global state to authorised. 
+ * 
+ * @author Sylwia Krupa | w18015597
+ */
 const LoginPage = () => {
 
     let navigate = useNavigate();

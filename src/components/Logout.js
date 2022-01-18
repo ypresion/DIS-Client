@@ -1,6 +1,14 @@
 import React from 'react';
 import { Button } from "react-bootstrap";
 
+/**
+ * Logout component.
+ * 
+ * It will render a logout button which deletes a JWT token
+ * from local storage and sets global state to unauthorized.
+ * 
+ * @author Sylwia Krupa | w18015597
+ */
 class Logout extends React.Component {
 
 render() {

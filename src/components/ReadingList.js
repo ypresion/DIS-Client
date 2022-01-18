@@ -1,6 +1,14 @@
 import React from "react";
 import Paper from "./Paper";
 
+/**
+ * Reading list component.
+ * 
+ * It will render a list of papers present in the user's 
+ * reading list.
+ * 
+ * @author Sylwia Krupa | w18015597
+ */
 class ReadingList extends React.Component {
 
     constructor(props) {

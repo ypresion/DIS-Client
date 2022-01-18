@@ -2,6 +2,14 @@ import React from "react";
 import Authors from "./Authors";
 import SearchBox from "./SearchBox";
 
+/**
+ * AuthorPage component.
+ * 
+ * It will render a page containing a list of all of the authors, 
+ * along with a search box.
+ * 
+ * @author Sylwia Krupa | w18015597
+ */
 class AuthorPage extends React.Component {
 
     constructor(props) {

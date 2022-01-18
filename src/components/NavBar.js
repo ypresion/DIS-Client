@@ -5,7 +5,16 @@ import Logout from "./Logout";
 import { GlobalStateContext } from "../GlobalStateProvider";
 import { useNavigate } from "react-router-dom";
 
-
+/**
+ * A navbar component.
+ * 
+ * It will render a navigation bar with links to all of the 
+ * available pages. It will allow the user to access login page or
+ * log out. It will also display a reading list link to logged in 
+ * users.
+ * 
+ * @author Sylwia Krupa | w18015597
+ */
 const NavBar = () => {
 
   const [state, dispatch] = React.useContext(GlobalStateContext);

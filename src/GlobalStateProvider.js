@@ -1,7 +1,14 @@
 import React from "react"
 
-let initialGlobalState; 
+/**
+ * Global state provider.
+ * 
+ * It enables global state to be shared and changed between its children components.
+ * 
+ * @author Sylwia Krupa | w18015597
+ */
 
+let initialGlobalState; 
 if (localStorage.getItem('authToken') !== null) {
   initialGlobalState = {
     authorised: true

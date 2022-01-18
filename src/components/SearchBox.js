@@ -1,6 +1,11 @@
 import React from "react";
 import { InputGroup, FormControl, Container, Row } from "react-bootstrap";
    
+/**
+ * A searchbox component.
+ * 
+ * @author Sylwia Krupa | w18015597
+ */
 class SearchBox extends React.Component {
 
     render() {
