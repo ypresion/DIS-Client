@@ -16,6 +16,7 @@ const Paper = (props) => {
 
     const [state, dispatch] = React.useContext(GlobalStateContext);
 
+    //Add new paper to the reading list
     const addToReadingList = () => {
         let url = "http://unn-w18015597.newnumyspace.co.uk/kf6012/coursework/part1/api/readinglist"
 
@@ -41,6 +42,7 @@ const Paper = (props) => {
             });
     }
 
+    //Remove item from the reading list
     const removeFromReadingList = () => {
         let url = "http://unn-w18015597.newnumyspace.co.uk/kf6012/coursework/part1/api/readinglist"
 
@@ -83,14 +85,16 @@ const Paper = (props) => {
         localStorage.setItem('readingList', JSON.stringify(filtered))
     }
 
+    //Check whether the paper given is on the reading list 
     const isOnReadingList = (paper) => {
-        console.log(state)
         return state.readingList.some((item) => { return item.paper_id === paper.paper_id; })
     }
 
     const add = <Button onClick={addToReadingList} variant="primary">Add to Reading List</Button>;
     const remove = <Button onClick={removeFromReadingList} variant="danger">Remove from Reading List</Button>;
 
+    //Render a paper element with additional buttons for adding or deleting it
+    //from reading list if the user is logged in.
     return (
         <Container className="px-5">
             <Accordion defaultActiveKey="0">

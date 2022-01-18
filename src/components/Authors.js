@@ -18,16 +18,19 @@ class Authors extends React.Component {
     }
 
     render() {
+        //Handle no data returned
         let noData = "" 
         if (this.state.results.length === 0) {
             noData = <p>No author data available.</p>
         }
 
+        //Handle search
         let filteredResults = this.state.results;
         if ((filteredResults.length > 0) && (this.props.search !== undefined)) {
             filteredResults = this.state.results.filter(this.filterSearch);
         }
 
+        //Add pagination - display 10 author components per page
         let buttons = ""
         if (this.props.page !== undefined) {
             const pageSize = 10
@@ -55,6 +58,7 @@ class Authors extends React.Component {
         )
     }
 
+    //Fetch author data
     componentDidMount() {
         const url = "http://unn-w18015597.newnumyspace.co.uk/kf6012/coursework/part1/api/authors"
     

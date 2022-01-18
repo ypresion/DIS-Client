@@ -20,6 +20,7 @@ const NavBar = () => {
   const [state, dispatch] = React.useContext(GlobalStateContext);
   let navigate = useNavigate();
 
+  //Update global state and local storage on logout
   const handleLogoutClick = () => {
     dispatch({ authorised: false })
     dispatch({ readingList: [] })
@@ -48,7 +49,7 @@ const NavBar = () => {
     <Nav.Link as="li"><Link to="readinglist">Reading List</Link></Nav.Link>
   )
 
-
+  //Display different NavBar elements depending on authorization status
   return (
     <Navbar bg="light" expand="lg" as="ul">
       <Container>

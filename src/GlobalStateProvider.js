@@ -9,6 +9,8 @@ import React from "react"
 
 let initialGlobalState; 
 
+//Global state gets initialized again on refresh - to persist it on 
+//page reload it needs to be populated from local storage.
 if (localStorage.getItem('authToken') !== null) {
   initialGlobalState = {
     authorised: true,
@@ -21,6 +23,7 @@ if (localStorage.getItem('authToken') !== null) {
   }
 }
 
+//React Context allows for creating global state available to children components
 export const GlobalStateContext = React.createContext({
   state: initialGlobalState,
   dispatch: () => null

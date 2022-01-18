@@ -24,7 +24,7 @@ class ReadingList extends React.Component {
     }
 
     render() {
-        console.log(this.state.readingList)
+        //Only render papers on the reading list
         let filteredResults = this.state.papers.filter((paper) => (this.onReadingList(paper.paper_id)));
         return (
             <div>
@@ -40,6 +40,7 @@ class ReadingList extends React.Component {
         return this.props.papers.some((item) => { return item.paper_id === paper_id; })
     }
 
+    //Fetch all paper data 
     fetchAllPapers() {
         let url = "http://unn-w18015597.newnumyspace.co.uk/kf6012/coursework/part1/api/papers"
         fetch(url)

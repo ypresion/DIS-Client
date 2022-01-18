@@ -20,13 +20,14 @@ class Papers extends React.Component {
     }
 
     render() {
+        //Handle no data returned
         let noData = "" 
         if (this.state.results.length === 0) {
             noData = <p>No papers data available.</p>
         }
 
+        //Handle search and filter by award
         let filteredResults = this.state.results;
-
         if ((this.props.award !== undefined)) {
             filteredResults = filteredResults.filter(this.filterByAward);
         }
@@ -34,6 +35,7 @@ class Papers extends React.Component {
             filteredResults = filteredResults.filter(this.filterSearch);
         }
 
+        //Add pagination - display 10 paper components per page
         let buttons = ""
         if (this.props.page !== undefined) {
             const pageSize = 10
@@ -65,6 +67,7 @@ class Papers extends React.Component {
         this.fetchPapers();
     }
     
+    //Fetch papers based on props provided
     fetchPapers = () => {
         let url;
         if (this.props.randomPaper) {

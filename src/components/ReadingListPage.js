@@ -14,6 +14,7 @@ const ReadingListPage = () => {
 
     const [state, dispatch] = React.useContext(GlobalStateContext);
 
+    //Only return the reading list to authorized users 
     const readingList = <ReadingList papers={state.readingList} />;
     const unauthorised = <h2>Not authorised! Please log in to access this page.</h2>;
 
