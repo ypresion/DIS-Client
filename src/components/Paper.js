@@ -31,7 +31,6 @@ const Paper = (props) => {
         })
             .then((response) => {
                 if ((response.status === 200) || (response.status === 204)) {
-                    console.log("added " + props.paper.paper_id)
                     addToState(props.paper)
                 } else {
                     throw Error(response.statusText);
@@ -57,7 +56,6 @@ const Paper = (props) => {
         })
             .then((response) => {
                 if ((response.status === 200) || (response.status === 204)) {
-                    console.log("removed " + props.paper.paper_id)
                     removeFromState(props.paper)
                 } else {
                     throw Error(response.statusText);
